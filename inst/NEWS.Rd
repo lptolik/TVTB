@@ -1,7 +1,15 @@
 \name{TVTB-NEWS}
 \title{NEWS: The VCF Tool Box}
 
-\section{Changes in version 1.0.1 2016-10-21}{
+\section{Changes in version 1.0.2 2016-10-23}{
+\subsection{Minor changes}{
+\itemize{
+\item Bug fix. Release only requires R version 3.3.1.
+}
+}
+}
+
+\section{Changes in version 1.0.1 2016-10-23}{
 \subsection{Minor changes}{
 \itemize{
 \item Merged devel branch version 1.1.2.
