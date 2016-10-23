@@ -1,4 +1,5 @@
 
+# nocov start
 # Genotypes ----
 
 .valid.Genotypes <- function(object){
@@ -221,3 +222,4 @@ VcfFilterRules <- setClass(
 
     validity = .valid.VcfFilterRules
 )
+# nocov end

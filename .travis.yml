@@ -1,8 +1,9 @@
 
 language: r
-use_bioc: true
-bioc_required: true
-r: bioc-release
+r: release
+#use_bioc: true
+#bioc_required: true
+#r: bioc-devel
 
 os:
   - linux
@@ -14,10 +15,18 @@ os:
 branches:
   only:
   - master
-  - BiocReview
+  - devel
+  - release-3.4
+
+sudo: false
+cache: packages
 
 before_install:
-    - Rscript -e 'source(file = "http://bioconductor.org/biocLite.R");tryCatch(useDevel(devel = TRUE), error = function(err){message(err)})'
+    - Rscript -e 'source(file = "http://bioconductor.org/biocLite.R")'
+    - Rscript -e 'BiocInstaller::biocLite("devtools")'
+    - Rscript -e 'devtools::install_github("Bioconductor-mirror/S4Vectors", ref = "release-3.4")'
+    - Rscript -e 'devtools::install_github("Bioconductor-mirror/SummarizedExperiment", ref = "release-3.4")'
+    - Rscript -e 'devtools::install_github("Bioconductor-mirror/Rsamtools", ref = "release-3.4")'
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tlmgr install bera nowidow parnotes marginfix; fi
     #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo tlmgr install authblk beramono caption changepage color enumitem etoolbox fancyhdr fontenc footmisc framed geometry graphicx hyperref ifthen marginfix mathtools nowidow parnotes parskip placeins ragged2e soul titlesec titletoc xstring; fi
 
@@ -26,6 +35,7 @@ warnings_are_errors: false
 r_github_packages:
     - rstudio/shiny
     - rstudio/DT
+    - jimhester/covr
 
 r_build_args: --keep-empty-dirs --no-resave-data
 r_check_args: --no-vignettes --timings
