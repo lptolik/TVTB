@@ -1,0 +1,176 @@
+
+# Imports ----
+
+import("BiocGenerics")
+import("S4Vectors")
+import("IRanges")
+import("GenomicRanges")
+import("SummarizedExperiment")
+import("methods")
+
+importFrom(
+    "BiocParallel",
+    "SerialParam", "MulticoreParam", "SnowParam", "registered")
+importMethodsFrom(
+    "BiocParallel",
+    "bpmapply", "bplapply")
+import("Biostrings")
+
+importFrom(
+    "AnnotationFilter",
+    "GenenameFilter", "GRangesFilter")
+
+importMethodsFrom(
+    "ensembldb",
+    "genes", "exonsBy", "mapIds")
+
+importMethodsFrom(
+    "GenomeInfoDb",
+    "seqnames", "seqinfo", "seqlevels")
+
+importFrom(
+    "limma",
+    "strsplit2"
+)
+
+importFrom(
+    "Rsamtools",
+    "TabixFile")
+importMethodsFrom(
+    "Rsamtools",
+    "path")
+
+importFrom(
+    "stats",
+    "as.formula"
+)
+
+# When Source and Version will be possible to add to VCF INFO fields
+#importFrom(
+#    "utils",
+#    "packageVersion"
+#)
+importFrom(
+    "utils",
+    "read.table", "str")
+
+importClassesFrom(
+    "VariantAnnotation",
+    "VCF", "VCFHeader")
+importMethodsFrom(
+    "VariantAnnotation",
+    "scanVcfHeader", "ScanVcfParam",
+    "readVcf", "geno", "samples",
+    "expand",
+    "fixed", "fixed<-",
+    "info", "info<-",
+    "header", "header<-",
+    "ref", "ref<-",
+    "alt", "alt<-"
+)
+importFrom(
+    "VariantAnnotation",
+    "vcfSamples", "vcfWhich", "vcfFixed", "vcfInfo", "vcfGeno",
+    "vcfSamples<-", "vcfWhich<-", "vcfFixed<-", "vcfInfo<-", "vcfGeno<-"
+)
+
+importFrom("ensemblVEP", "parseCSQToGRanges")
+
+importFrom(
+    "ggplot2",
+    "ggplot", "aes_string", "facet_wrap",
+    "geom_bar", "geom_density", "geom_dotplot",
+    "ylab",
+    "theme", "element_text", "rel",
+    "scale_x_discrete", "scale_colour_discrete", "scale_fill_discrete")
+
+importFrom(
+    "GGally",
+    "ggpairs"
+)
+
+#import(ggbio)
+importFrom(
+    "Gviz",
+    "GeneRegionTrack", "DataTrack", "plotTracks"
+)
+
+importFrom(
+    "reshape2",
+    "melt", "dcast")
+
+#exportPattern("^[[:alpha:]]+")
+
+# runShinyApp.R ----
+
+export("tSVE")
+
+# S4 ----
+
+exportMethods(
+    "autodetectGenotypes",
+
+    "countGenos", "addCountGenos",
+
+    "addFrequencies", "addOverallFrequencies", "addPhenoLevelFrequencies",
+
+    "vepInPhenoLevel", "variantsInSamples",
+
+    "dropInfo",
+
+    "plotInfo", "pairsInfo",
+
+    "genos", "genos<-",
+    "ranges", "ranges<-",
+    "aaf", "aaf<-",
+    "maf", "maf<-",
+    "ref", "ref<-",
+    "het", "het<-",
+    "alt", "alt<-",
+    "carrier",
+    "vep", "vep<-",
+    "bp","bp<-",
+    "suffix",
+    "svp", "svp<-"
+)
+
+#exportClassPattern("^.*$")
+exportClasses(
+    "TVTBparam", "Genotypes",
+    "VcfFixedRules", "VcfInfoRules", "VcfVepRules", "VcfFilterRules"
+)
+
+# Constructors ----
+
+# Default methods
+export(
+    "TVTBparam", "Genotypes",
+    "VcfFixedRules", "VcfInfoRules", "VcfVepRules", "VcfFilterRules"
+)
+
+# Re-export useful methods defined in other packages ----
+
+exportMethods(
+    # Biostrings
+    "type",
+
+    # S4Vectors
+    "mcols",
+
+    # Base
+    "c",
+
+    # S4Vectors
+    "eval", "evalSeparately", "subsetByFilter", "active", "active<-",
+    "metadata", "metadata<-",
+
+    # SummarizedExperiment
+    "colData", "colData<-",
+
+    # VariantAnnotation
+    "readVcf", "ScanVcfParam",
+    "header", "header<-", "geno", "fixed", "info", "info<-",
+
+    # BiocGenerics
+    "append"
+)

@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^codecov\.yml$
+^\.travis\.yml$
+^.BBSoptions$
+^appveyor\.yml$
